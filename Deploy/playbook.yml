@@ -1,0 +1,4 @@
+- hosts: all
+  remote_user: root
+  roles:
+    - lyanna_giarrizzo_fr

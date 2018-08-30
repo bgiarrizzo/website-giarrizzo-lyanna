@@ -1,0 +1,38 @@
+## Requirements
+
+- name: Nginx root web folders creation
+  file:
+    path: "/home/web/giarrizzo.fr/lyanna/home/"
+    owner: bruno
+    group: www-data
+    state: directory
+    mode: 0755
+
+- name: Nginx log folders creation
+  file:
+    path: "/var/log/nginx/lyanna.giarrizzo.fr/"
+    owner: www-data
+    group: adm
+    state: directory
+    mode: 0755
+
+## vHost Config
+
+- name: Site Install = Lyanna.Giarrizzo.fr
+  template:
+    src: lyanna.giarrizzo.fr.conf
+    dest: /etc/nginx/sites-enabled/004-lyanna.giarrizzo.fr.conf
+  notify: restart nginx
+
+## Git Pull
+
+- name: Git pull - lyanna.giarrizzo.fr
+  git:
+    repo: git@gitlab.com:bgiarrizzo/lyanna.giarrizzo.fr.git
+    dest: /home/web/giarrizzo.fr/lyanna/home/
+    update: yes
+
+- name: Remove Deploy Files
+  file:
+    path: "/home/web/giarrizzo.fr/home/Deploy"
+    state: absent
