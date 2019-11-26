@@ -163,4 +163,4 @@
       - "/var/log/nginx/site_giarrizzo/{{ domain_name }}/:/var/log/nginx/"
   tags:
     - deploy_site
-    - jessica_giarrizzo_fr
+    - lyanna_giarrizzo_fr
